@@ -1,3 +1,7 @@
 {
+  "DeleteDatabase": "Deleteing old database",
+  "CreateDatabase": "Creating new database",
+  "CeateTable": "Creating table",
 
+  "SqlToConsole": "Printing data to the console"
 }
