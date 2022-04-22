@@ -59,16 +59,20 @@ namespace Excel_Reader
             }
         }
 
-        internal void DeleteDatabase()
+        internal void DeleteDatabase() //TODO fix so it works when there is no database
         {
             outputController.DisplayMessage("DeleteDatabase");
             using (SqlConnection connection = new SqlConnection(connectionStringDatabase))
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    string commandText = $@"USE MASTER ALTER DATABASE [ExcelDatabase] SET single_user WITH ROLLBACK IMMEDIATE
-                                            DROP DATABASE [ExcelDatabase]";
-
+                    string commandText = $@"IF EXISTS (SELECT * FROM sys.databases WHERE name = 'ExcelDatabase') 
+                                            BEGIN
+                                            USE MASTER 
+                                            ALTER DATABASE [ExcelDatabase] SET single_user WITH ROLLBACK IMMEDIATE 
+                                            DROP DATABASE [ExcelDatabase] 
+                                            END";
+                                          
                     command.CommandText = commandText;
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -77,3 +81,5 @@ namespace Excel_Reader
         }
     }
 }
+//USE MASTER ALTER DATABASE [ExcelDatabase] SET single_user WITH ROLLBACK IMMEDIATE
+//DROP DATABASE[ExcelDatabase]

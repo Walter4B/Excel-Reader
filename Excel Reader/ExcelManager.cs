@@ -9,7 +9,7 @@ namespace Excel_Reader
 {
     internal class ExcelManager
     {
-        string fileLocation = @"D:\Projects\Excel Reader\Office supplies acquisition table.xlsx";
+        string fileLocation = @"Excel Reader\Office supplies acquisition table.xlsx";
         private List<T> GetList<T>(ExcelWorksheet sheet)
         {
             List<T> list = new List<T>();

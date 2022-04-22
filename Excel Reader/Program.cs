@@ -10,7 +10,7 @@ namespace Excel_Reader
             ExcelManager excelManager = new ExcelManager();
 
             databaseManager.CreateDatabase();
-            //excelManager.GetExcelData(); //TODO
+            excelManager.GetExcelData(); //TODO
             //sqlController.DatabaseToDisplayEngine(); //needs excelManager to work
         }
     }

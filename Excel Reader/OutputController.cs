@@ -14,7 +14,7 @@ namespace Excel_Reader
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("Excel Reader/OutputText.json");
+                .AddJsonFile("D:/Projects/Excel Reader/Excel Reader/OutputText.json");
             return builder.Build();
         }
     }
