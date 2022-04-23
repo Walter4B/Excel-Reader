@@ -62,7 +62,7 @@ namespace Excel_Reader
         internal void DeleteDatabase() //TODO fix so it works when there is no database
         {
             outputController.DisplayMessage("DeleteDatabase");
-            using (SqlConnection connection = new SqlConnection(connectionStringDatabase))
+            using (SqlConnection connection = new SqlConnection(connectionStringServer))
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {

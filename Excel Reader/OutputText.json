@@ -3,5 +3,6 @@
   "CreateDatabase": "Creating new database",
   "CeateTable": "Creating table",
 
+  "ImporttoDB": "Importing data to database",
   "SqlToConsole": "Printing data to the console"
 }

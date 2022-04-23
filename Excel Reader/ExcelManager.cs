@@ -9,7 +9,7 @@ namespace Excel_Reader
 {
     internal class ExcelManager
     {
-        string fileLocation = @"Excel Reader\Office supplies acquisition table.xlsx";
+        string fileLocation = @"D:\Projects\Excel Reader\Office supplies acquisition table.xlsx";
         private List<T> GetList<T>(ExcelWorksheet sheet)
         {
             List<T> list = new List<T>();
@@ -34,6 +34,7 @@ namespace Excel_Reader
 
         internal void GetExcelData()
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new ExcelPackage(new FileInfo(fileLocation)))
             {
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;

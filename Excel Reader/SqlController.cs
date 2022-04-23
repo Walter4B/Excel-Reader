@@ -9,6 +9,7 @@ namespace Excel_Reader
     {
         string connectionStringDatabase = ConfigurationManager.ConnectionStrings["ConnectionStringDatabase"].ConnectionString;
 
+        ExcelManager excelManager = new ExcelManager();
         TableVisualisationEngine tableVisualisationEngine = new TableVisualisationEngine();
         OutputController outputController = new OutputController();
 
@@ -36,5 +37,13 @@ namespace Excel_Reader
                 }
             }
         }
+
+        internal void ExcelToDatabase()
+        {
+            //List<T> excelDataList = excelManager.GetExcelData();
+            outputController.DisplayMessage("ImporttoDB");
+        }
     }
+
+
 }
