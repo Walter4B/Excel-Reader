@@ -1,5 +1,7 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Linq;
 using System.Data.SqlClient;
 
 
@@ -42,7 +44,7 @@ namespace Excel_Reader
         {
             outputController.DisplayMessage("ImporttoDB");
 
-            List<Excel_Reader.Models.Acquisition> excelDataList = excelManager.GetExcelData();
+             IList<Models.Acquisition> excelDataList = excelManager.GetExcelData();
 
             using (SqlConnection connection = new SqlConnection(connectionStringDatabase))
             {
@@ -51,15 +53,11 @@ namespace Excel_Reader
                     connection.Open();
                     for (int i = 0; i < excelDataList.Count; i++)
                     {
-                        List<string> properties = new List<string>();
-                        foreach (var value in excelDataList[i]) //CS1579 does not contain exstension definition for GetEnumerator
-                        {
-                            properties.Add(value);
-                        }
-                        string commandText = $@"INSERT INTO ExcelTable (Order Date, Region, Rep, Item, Units, Unit Cost, Total) VALUES ('{excelDataList[i]}')";
+                        string commandText = $@"INSERT INTO ExcelTable (OrderDate, Region, Rep, Item, Units, UnitCost, Total) 
+                                            VALUES ('{excelDataList[i].OrderDate.ToString()}','{excelDataList[i].Region}','{excelDataList[i].Rep}','{excelDataList[i].Item}',
+                                                    '{excelDataList[i].Units}','{excelDataList[i].UnitCost}','{excelDataList[i].Total}')";
                         command.CommandText = commandText;
                         command.ExecuteNonQuery();
-
                     }
                 }
             }

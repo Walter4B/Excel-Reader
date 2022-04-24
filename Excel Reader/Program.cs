@@ -11,6 +11,7 @@ namespace Excel_Reader
 
             databaseManager.CreateDatabase();
             excelManager.GetExcelData();
+            sqlController.ExcelToDatabase();
             sqlController.DatabaseToDisplayEngine();
         }
     }

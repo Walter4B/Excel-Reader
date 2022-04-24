@@ -47,8 +47,8 @@ namespace Excel_Reader
                             Rep	VARCHAR (30) NOT NULL,
                             Item VARCHAR (30) NOT NULL,
                             Units INT NOT NULL,
-                            UnitCost DECIMAL NOT NULL,
-                            Total DECIMAL NOT NULL
+                            UnitCost DECIMAL (10,2) NOT NULL,
+                            Total DECIMAL(10,2) NOT NULL
                             );
                         ";
 
@@ -81,5 +81,3 @@ namespace Excel_Reader
         }
     }
 }
-//USE MASTER ALTER DATABASE [ExcelDatabase] SET single_user WITH ROLLBACK IMMEDIATE
-//DROP DATABASE[ExcelDatabase]

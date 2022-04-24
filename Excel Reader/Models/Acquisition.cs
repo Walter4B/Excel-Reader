@@ -8,21 +8,19 @@ namespace Excel_Reader.Models
 {
     internal class Acquisition
     {
-        string ID { get; set; }
+        public string OrderDate { get; set; }
 
-        string OrderDate { get; set; }
+        public string Region { get; set; }
 
-        string Region { get; set; }
+        public string Rep { get; set; }
 
-        string Rep { get; set; }
+        public string Item { get; set; }
 
-        string Item { get; set; }
+        public int Units { get; set; }
 
-        int Units { get; set; }
+        public float UnitCost { get; set; }
 
-        float UnitCost { get; set; }
-
-        int Total { get; set; }
+        public int Total { get; set; }
 
     }
 }
