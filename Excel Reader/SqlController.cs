@@ -29,7 +29,7 @@ namespace Excel_Reader
 
                         while (reader.Read())
                         {
-                            tableData.Add(new List<object> {reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), 
+                            tableData.Add(new List<object> {reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
                                                             reader.GetString(4), reader.GetInt32(5), reader.GetDecimal(6), reader.GetDecimal(7)});
                         }
                         tableVisualisationEngine.ConsoleDisplayData(tableData);
@@ -40,10 +40,30 @@ namespace Excel_Reader
 
         internal void ExcelToDatabase()
         {
-            //List<T> excelDataList = excelManager.GetExcelData();
             outputController.DisplayMessage("ImporttoDB");
+
+            List<Excel_Reader.Models.Acquisition> excelDataList = excelManager.GetExcelData();
+
+            using (SqlConnection connection = new SqlConnection(connectionStringDatabase))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+                    for (int i = 0; i < excelDataList.Count; i++)
+                    {
+                        List<string> properties = new List<string>();
+                        foreach (var value in excelDataList[i]) //CS1579 does not contain exstension definition for GetEnumerator
+                        {
+                            properties.Add(value);
+                        }
+                        string commandText = $@"INSERT INTO ExcelTable (Order Date, Region, Rep, Item, Units, Unit Cost, Total) VALUES ('{excelDataList[i]}')";
+                        command.CommandText = commandText;
+                        command.ExecuteNonQuery();
+
+                    }
+                }
+            }
         }
     }
-
-
 }
+

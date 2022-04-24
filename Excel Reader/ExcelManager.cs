@@ -32,7 +32,7 @@ namespace Excel_Reader
             return list;
         }
 
-        internal void GetExcelData()
+        internal List<Excel_Reader.Models.Acquisition> GetExcelData()
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new ExcelPackage(new FileInfo(fileLocation)))
@@ -40,6 +40,7 @@ namespace Excel_Reader
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 var sheet = package.Workbook.Worksheets["1.2001"];
                 var acquisitions = new ExcelManager().GetList<Models.Acquisition>(sheet);
+                return acquisitions;
             }
         }
     }
