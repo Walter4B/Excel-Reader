@@ -59,7 +59,7 @@ namespace Excel_Reader
             }
         }
 
-        internal void DeleteDatabase() //TODO fix so it works when there is no database
+        internal void DeleteDatabase() 
         {
             outputController.DisplayMessage("DeleteDatabase");
             using (SqlConnection connection = new SqlConnection(connectionStringServer))
@@ -78,6 +78,11 @@ namespace Excel_Reader
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        internal void DynamicCreateTable()
+        { 
+            
         }
     }
 }
