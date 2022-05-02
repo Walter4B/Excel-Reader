@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Excel_Reader.Models
 {
-    internal class Acquisition
+    internal class ExcelSheetData
     {
         public string OrderDate { get; set; }
 

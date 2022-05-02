@@ -44,7 +44,7 @@ namespace Excel_Reader
         {
             outputController.DisplayMessage("ImporttoDB");
 
-             IList<Models.Acquisition> excelDataList = excelManager.GetExcelData();
+             IList<Models.ExcelSheetData> excelDataList = excelManager.GetExcelData();
 
             using (SqlConnection connection = new SqlConnection(connectionStringDatabase))
             {

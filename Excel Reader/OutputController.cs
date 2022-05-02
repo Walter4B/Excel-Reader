@@ -5,6 +5,7 @@ namespace Excel_Reader
     internal class OutputController
     {
         private readonly IConfiguration configuration = GetConfiguration();
+
         internal void DisplayMessage(string messageKey)
         {
             Console.WriteLine(configuration[messageKey]);
@@ -14,7 +15,7 @@ namespace Excel_Reader
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("D:/Projects/Excel Reader/Excel Reader/OutputText.json");
+                .AddJsonFile("Excel Reader/appsettings.json");
             return builder.Build();
         }
     }

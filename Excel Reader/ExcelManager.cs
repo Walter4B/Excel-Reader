@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 using OfficeOpenXml;
+using System.IO;
 
 namespace Excel_Reader
 {
     internal class ExcelManager
     {
-        string fileLocation = @"D:\Projects\Excel Reader\Office supplies acquisition table.xlsx";
+        string fileLocation = Path.Combine(Directory.GetCurrentDirectory(), ConfigurationManager.AppSettings.Get("ExcelFileName"));
         private List<T> GetList<T>(ExcelWorksheet sheet)
         {
             List<T> list = new List<T>();
@@ -33,14 +35,14 @@ namespace Excel_Reader
             return list;
         }
 
-        internal List<Excel_Reader.Models.Acquisition> GetExcelData()
+        internal List<Models.ExcelSheetData> GetExcelData()
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new ExcelPackage(new FileInfo(fileLocation)))
             {
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-                var sheet = package.Workbook.Worksheets["1.2001"];
-                var acquisitions = new ExcelManager().GetList<Models.Acquisition>(sheet);
+                var sheet = package.Workbook.Worksheets[0];
+                var acquisitions = new ExcelManager().GetList<Models.ExcelSheetData>(sheet);
                 return acquisitions;
             }
         }
